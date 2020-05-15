@@ -37,7 +37,7 @@ using namespace std;
 
 
 //log function (suppose to be in Logging.cpp). errtype E for Error, S for standard log, W for Warning
-	void logToFile(string message, char errtype) {logFile << "[" << errtype << "]" << message << endl;}
+	void logToFile(string message, char errtype) {logFile << endl << "[" << errtype << "]" << message;}
 
 
 //Error (suppose to be in Error.cpp)
@@ -86,12 +86,14 @@ using namespace std;
 
 //Intercace, Functions that user will use directly (suppose in Interface.cpp)
 	namespace Interface {
-		//Show Company Name, Copyright Info, Version etc.
+		//Show Company Name, Copyright Info, Explnation about the system etc.
 		void greetings(){
 			logToFile("Begain: Interface::greetings()",'S');
 			cout<<"   _____ _ _    _  __              _____                          \n  / ____(_) |  | |/ /             / ____|                         \n | |     _| | _| ' / ___   ___   | |     ___  _ __ ___  _ __ ___  \n | |    | | |/ /  < / _ \\ / _ \\  | |    / _ \\| '_ ` _ \\| '_ ` _ \\ \n | |____| |   <| . \\ (_) | (_) | | |___| (_) | | | | | | | | | | |\n  \\_____|_|_|\\_\\_|\\_\\___/ \\___/   \\_____\\___/|_| |_| |_|_| |_| |_|"<<endl;
 			cout<<"Copyright (c) "<<COPYRIGHT<<", All Rights Reserved."<<endl;
 			cout<<"Thanks for using CikKoo Comm Internet Plan Auto Selector Ver "<<VERSION<<" !"<<endl;
+			cout<<endl<<"This system will help you to select the best plan of your need,\nand process your request automatically!"<<endl;
+			cout<<"Enter some of your requirements to begain!"<<endl;
 			logToFile("End: Interface::greetings()",'S');
 			return;
 		}
@@ -100,7 +102,7 @@ using namespace std;
 
 //main
 int main(){
-	logFile<<"# S for standard log, E for Error, W for Warning\n\n";
+	logFile<<"# S for standard log, E for Error, W for Warning"<<endl;
 	try{
 		logToFile("Initialized.",'S');
 		Interface::greetings();
