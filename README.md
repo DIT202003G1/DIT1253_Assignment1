@@ -8,7 +8,7 @@ This is our assignment, you can see files on top
 
 SignUp and Login, and learn how to use github.
 
-> But i dont want to learn how github use.  
+> But i dont want to learn how to use github.  
 
 Ummm.. Then if you have changed anything, sand it to @mclt0568 (or to Frankie by Whatsapp) and i will upload for you.
 
