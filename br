@@ -1,0 +1,6 @@
+FN=new
+g++ $FN.cpp -o $FN.out
+chmod +x $FN.out
+./$FN.out
+#rm log
+rm $FN.out

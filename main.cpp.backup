@@ -1,0 +1,170 @@
+/*
+	Project Details
+	
+	Subject: Programming Concept
+	Subject Details: DIT1253_202003_1
+	
+	Assignment Group: Individual
+	Group Member: Zhao Xuanao (20023404)
+	
+	Begain Date: (WED) 13 MAY 2020
+	
+	Lecturer:
+	Ms. Kumatha
+	kumatham@sunway.edu.my
+	016-5636585
+*/
+
+#include <iostream>	//standart console io
+#include <sstream>	//stringstream
+#include <fstream>	//file io
+#include <string>	//using string
+#include <cctype>	//using tolower for charactor types
+#include <map>		//using dictionary(maps)
+
+using namespace std; //using standard namespace
+
+//init
+	//for internal use
+	int VERSION = 1; //version of this program
+	string COPYRIGHT = "CikKoo Comm Ltd"; //not an actual copyright
+	ofstream logFile ("log"); //open an log file to put logs
+	int RETURN_CODE; //assign to this variable to define return code, 0 for normal exit, 1 for error.
+
+	//user inputs
+	char planTypeSelected; //stores the plantype that user inputted
+	int planSpeedSelected; //stores the planspeed as integer from user. example: 30 for 30Mbps
+
+//Plan Class conatining information like Price or Quota
+	class Plan{
+		public:
+			int speed,price;
+			string vc,quota;
+			//constructor
+			Plan(int argSpeed, int argPrice, string argVC, string argQuota){
+				speed = argSpeed; //Mbps
+				price = argPrice; //in RM
+				vc = argVC;
+				quota = argQuota; //in Mb
+			}
+	};
+
+//predefined Plans
+	//bisnuess plans in a dict with speed as the key and Plan class as value
+	map<int,Plan> bisnuessPlans = {
+		{100,Plan(100,129,"Free for CikKoo Line","500Mb")},
+		{300,Plan(300,189,"Free","Unlimited")},
+		{500,Plan(500,259,"Free","Unlimited")}
+	};
+	//home plans in a dict with speed as the key and Plan class as value
+	map<int,Plan> homePlans = {
+		{30,Plan(30,89,"Free for CikKoo Line","200Mb")},
+		{100,Plan(100,119,"Free","Unlimited")},
+		{300,Plan(300,179,"Free","Unlimited")}
+	};
+
+//To Log Messages in to log file
+	void logToFile(string message,string type) {
+		logFile << "["<<type<<"]" << message << "\n";
+	}
+
+//Error Class, this will be used when error occured.
+	class MainError{
+		public:
+			string Function; //Where this error happened?
+			int ErrCode; //An uniformed error code for quick diagnose
+			string Desc; //Error Description stor in 
+
+			//constructor
+			MainError(string argFunction, int argErrCode, string argDesc){
+				Function = argFunction;
+				ErrCode = argErrCode;
+				Desc = argDesc;
+			}
+			
+			//return as string for log file.
+			string getLogMessage(){
+				stringstream ErrorMessage;
+				ErrorMessage << "Error occured at: "<< Function << ", " << " Error Description: " << Desc << ", Code:" << ErrCode;
+				return ErrorMessage.str();
+			}
+	};
+
+
+
+//functions for astual interface (user are going to use features provided by these functions)
+	namespace Interface{
+
+		//greetings, call this function to print copyright, version, and welcome informations
+		void greetings(){
+			cout<<"\033[2J"<<endl; //to clear line
+			cout<<"   _____ _ _    _  __              _____                          \n  / ____(_) |  | |/ /             / ____|                         \n | |     _| | _| ' / ___   ___   | |     ___  _ __ ___  _ __ ___  \n | |    | | |/ /  < / _ \\ / _ \\  | |    / _ \\| '_ ` _ \\| '_ ` _ \\ \n | |____| |   <| . \\ (_) | (_) | | |___| (_) | | | | | | | | | | |\n  \\_____|_|_|\\_\\_|\\_\\___/ \\___/   \\_____\\___/|_| |_| |_|_| |_| |_|"<<endl;
+			cout<<"Copyright (c) "<<COPYRIGHT<<", All Rights Reserved."<<endl;
+			cout<<"Thanks for using CikKoo Comm Internet Plan Auto Selector Ver "<<VERSION<<" !"<<endl;
+		}
+
+		//print information to explain how this system works
+		void help(){
+			cout<<"\nThis system will help you to select the best plan of your need,\nand process your request automatically!"<<endl;
+			cout<<"\nEnter some of your requirements to begain!"<<endl;
+		}
+
+		//ask for plan, return H for home, B for bisnuess
+		char getPlanType(){
+			string selection;
+			while(true){
+				cout<<"Please select plan type!\nAre you applying for Home(H) or Bissuness(B).\nPress H for Home Plan, Press B for Bissnuess plan, and follow by an Enter: ";
+				logToFile("Waiting for plan selection.","LOG");
+				cin >> selection;
+				if(selection[0] == 'H' || selection[0] == 'B' ) return selection[0];
+				logToFile("Invalid charactor readed.","WAR");
+				cout<<"The inputted charactor is not H nor B. Please check the plan provided and type again!"<<endl;
+			}
+		}
+
+		//ask for speed the user expect.
+		int getPlanSpeed(char planType){
+			string selection;
+			if (planType == 'H') int planSpeedSelections[] = {30,100,300};
+			else if (planType == 'B') int planSpeedSelections[] = {100,300,500};
+			else throw MainError("getPlanSpeed",1,"PlanTypeNotFound. This might cause of uncought exception in getPlanType") ;
+			cout<<sizeof planSpeedSelections;
+			for(int i;i<3;i++){
+
+			}
+			return 1;
+		}
+
+	}
+
+//Main
+	int main(){
+		logToFile("Starting","LOG");
+		try{
+			logToFile("Initialized. Print Greeting Texts.","LOG");
+			Interface::greetings(); //show greetings, copyright information
+			cout<<endl;
+
+			Interface::help(); //show what to do, what this is.
+			logToFile("Printed Greeting Texts.","LOG");
+
+			planTypeSelected = Interface::getPlanType(); //prompt to input 
+			logToFile("Returned from getPlanType.","LOG");
+
+			planSpeedSelected = Interface::getPlanSpeed(planTypeSelected);
+			logToFile("Returned from getPlanSpeed.","LOG");
+
+
+
+			RETURN_CODE = 0;
+		}catch(MainError e){
+			stringstream errLog; errLog << e.getLogMessage();
+			logToFile(errLog.str(),"ERR");
+			cout<<"\n=======ERROR=======\nAn error has occured! Please contact a techincal support and show them this information!\n  ErrCode:"<<e.ErrCode<<"\n  At:"<<e.Function<<endl;
+			RETURN_CODE = 1;
+		}
+		stringstream exitLog; exitLog << "Exitting with code " << RETURN_CODE;
+		logToFile(exitLog.str(),"LOG");
+		logFile.close();
+		return RETURN_CODE;
+	}
