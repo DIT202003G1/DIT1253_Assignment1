@@ -22,10 +22,6 @@
 #include <cctype>	//using tolower for charactor types
 #include <map>		//using dictionary(maps)
 
-#include "Interface.cpp"	//Interface.cpp	
-#include "Error.cpp"		//Error.cpp
-#include "Plans.cpp"		//Plans.cpp
-
 using namespace std;
 
 int main(){
