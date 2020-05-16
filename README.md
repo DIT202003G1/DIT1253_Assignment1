@@ -15,3 +15,29 @@ Ummm.. Then if you have changed anything, sand it to @mclt0568 (or to Frankie by
 > Ok this is annoying, I dont care about this assignment, you do all the work  
 
 Umm.... ok.
+
+## What are the files?
+
+> Assignment Information  
+
+The Information, Cover Page, Instructinos  
+
+> README.md  
+
+The file you are reading now  
+
+> br  
+
+The bash script that build and run the program  
+
+> main.cpp.backup  
+
+Version 1, but code not organized, so give up  
+
+> new.cpp  
+
+Version 2, currently working on  
+
+> .gitignore  
+
+not important  
