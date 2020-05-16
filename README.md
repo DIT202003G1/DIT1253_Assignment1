@@ -1,7 +1,8 @@
 # DIT1253_Assignment1
 
 ## What is this
-This is our assignment, you can see files on top
+This is our assignment, you can see files on top.   [Instructions](https://github.com/DIT202003G1/DIT1253_Assignment1/blob/master/Assignment%20Information/Instruction.md) of this assignment is in the Information folder thing on top. or just click on the link.
+
 
 ## So now what?
 > What should I do  
