@@ -30,14 +30,23 @@ using namespace std;
 	string COPYRIGHT = "CikKoo Comm Ltd"; //not an actual copyright
 	ofstream logFile("log"); //open an log file to put logs
 	int RETURN_CODE; //assign to this variable to define return code, 0 for normal exit, 1 for error.
-
+	bool DEBUG_MODE = true; //if debug mode, Logs will be printed to stdout and stderr.
 	//user inputs
 	char planTypeSelected; //stores the plantype that user inputted
 	int planSpeedSelected; //stores the planspeed as integer from user. example: 30 for 30Mbps
 
 
 //log function (suppose to be in Logging.cpp). errtype E for Error, S for standard log, W for Warning
-	void logToFile(string message, char errtype) {logFile << endl << "[" << errtype << "]" << message;}
+	void logToFile(string message, char errtype) {
+		stringstream logMessage;
+		logMessage << endl << "[" << errtype << "]" << message;
+		logFile << logMessage.str();
+		if (DEBUG_MODE){
+			if (errtype == 'E') cerr<<logMessage.str();
+			else cout <<logMessage.str(); 
+		}
+		return;
+	}
 
 
 //Error (suppose to be in Error.cpp)
@@ -97,6 +106,30 @@ using namespace std;
 			logToFile("End: Interface::greetings()",'S');
 			return;
 		}
+		//Get User Input for Plan Type, Return 'H' for home, 'B' for bisnuess
+		char getPlanType(){
+			logToFile("Begain: Interface::getPlanType()",'S');
+			char returnVal;
+			string raw;
+			char filtred;
+			while(true){
+				cout<<"(instruction)"<<endl;
+				cout<<"(H/B)";
+				cin>>raw; filtred = raw[0]; //Get the first charactor
+				if(filtred == 'H'|filtred == 'B') {
+					returnVal = filtred;
+					break;
+				}
+				cout<<"(invalid option)"<<endl;
+				logToFile("Invalid option has been inputted, re-executing.",'W');
+			}
+			logToFile("End: Interface::getPlanType()",'S');
+			return returnVal;
+		}
+		//Get user input for Plan Speed, Return the Plan Speed as Integer
+		int getPlanSpeed(char planType){
+
+		}
 	}
 
 
@@ -106,12 +139,13 @@ int main(){
 	try{
 		logToFile("Initialized.",'S');
 		Interface::greetings();
+		planTypeSelected = Interface::getPlanType();
 		RETURN_CODE = 0;
 	}catch(Error e){
 		logToFile(e.getLogMsg(),'E');
 		RETURN_CODE = 1;
 	}
-	stringstream returnMessage;returnMessage << "Program exitted with code with "<<RETURN_CODE;
+	stringstream returnMessage;returnMessage << "Program exitted with code  "<<RETURN_CODE;
 	logToFile(returnMessage.str(),'S');
 	return RETURN_CODE;
 }
