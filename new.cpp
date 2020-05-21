@@ -4,9 +4,12 @@
 	Subject: Programming Concept
 	Subject Details: DIT1253_202003_1
 	
-	Assignment Group: Individual
-	Group Member: Zhao Xuanao (20023404)
-	
+	Assignment Group: Group ?
+	Group Members:
+	 - Zhao Xuanao (20023404)
+	 - Hee Kar Yan ()
+	 - Maisaa Ahmed ()
+
 	Begain Date: (WED) 13 MAY 2020
 	
 	Lecturer:
@@ -30,7 +33,7 @@ using namespace std;
 	string COPYRIGHT = "CikKoo Comm Ltd"; //not an actual copyright
 	ofstream logFile("log"); //open an log file to put logs
 	int RETURN_CODE; //assign to this variable to define return code, 0 for normal exit, 1 for error.
-	bool DEBUG_MODE = true; //if debug mode, Logs will be printed to stdout and stderr.
+	bool DEBUG_MODE = false; //if debug mode, Logs will be printed to stdout and stderr.
 	//user inputs
 	char planTypeSelected; //stores the plantype that user inputted
 	int planSpeedSelected; //stores the planspeed as integer from user. example: 30 for 30Mbps
@@ -128,7 +131,33 @@ using namespace std;
 		}
 		//Get user input for Plan Speed, Return the Plan Speed as Integer
 		int getPlanSpeed(char planType){
+			// logToFile("Begain: Interface::getPlanSpeed()",'S');
+			// char returnVal;
+			// string raw;
+			// char filtred;
+			// map<int,Plan> plans;
+			// switch(planType){
+			// 	case 'H': plans = homePlans; break;
+			// 	case 'B': plans = bisnuessPlans; break;
+			// 	default: Error err(1,"getPlanSpeed","PlanType not H nor B")
+			// }
 
+			// while(true){
+			// 	cout<<"(instruction at planspeed)"<<endl;
+			// 	for (int i;i<3;i++){
+
+			// 	}
+			// 	cout<<"(H/B)";
+			// 	cin>>raw; filtred = raw[0]; //Get the first charactor
+			// 	if(filtred == 'H'|filtred == 'B') {
+			// 		returnVal = filtred;
+			// 		break;
+			// 	}
+			// 	cout<<"(invalid option)"<<endl;
+			// 	logToFile("Invalid option has been inputted, re-executing.",'W');
+			// }
+			// logToFile("End: Interface::getPlanSpeed()",'S');
+			// return returnVal;
 		}
 	}
 
