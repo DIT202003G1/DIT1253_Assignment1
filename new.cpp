@@ -9,7 +9,7 @@
 	 - Zhao Xuanao (20023404)
 	 - Hee Kar Yan ()
 	 - Maisaa Ahmed ()
-
+	
 	Begain Date: (WED) 13 MAY 2020
 	
 	Lecturer:
@@ -26,7 +26,6 @@
 #include <map>		//using dictionary(maps)
 
 using namespace std;
-
 
 //inits
 	int VERSION = 2; //version of this program
@@ -116,14 +115,14 @@ using namespace std;
 			string raw;
 			char filtred;
 			while(true){
-				cout<<"(instruction)"<<endl;
-				cout<<"(H/B)";
+				cout<<"Are you applying for Home(H) or Bisnuess(B)?"<<endl;
+				cout<<"Please type H or B following with [enter]. (Case sensitive):";
 				cin>>raw; filtred = raw[0]; //Get the first charactor
 				if(filtred == 'H'|filtred == 'B') {
 					returnVal = filtred;
 					break;
 				}
-				cout<<"(invalid option)"<<endl;
+				cout<<"You have entered an invalid option. Please enter either H or B only!"<<endl;
 				logToFile("Invalid option has been inputted, re-executing.",'W');
 			}
 			logToFile("End: Interface::getPlanType()",'S');
