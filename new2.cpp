@@ -19,17 +19,36 @@
 */
 
 #include <iostream>
+#include <sstream>
+#include <string>
+#include <fstream>
 
 using namespace std;
 
-//PREDEFINES
-namespace predefined{
-
+//SOFTWARE INFORMATION
+namespace info{
+	int version = 3;
+	string copyright = "(c) 2020 CikKoo Comm Ltd, All rights reserved.";
 }
 
 //UTILS FUNCTIONS
 namespace utils{
+	//Error Class
+	class Error{
+	public:
+		string description, position;
+		Error(string argDescription, string argPosition)
+	};
+}
 
+//PREDEFINES
+namespace predefined{
+	
+}
+
+//PREDEFINED PLANS
+namespace plans{
+	
 }
 
 //IO INTERFACE
@@ -37,14 +56,19 @@ namespace interface{
 
 }
 
-//PREDEFINED PLANS
-namespace plans{
-
-}
-
 //main
 int main(){
 	int returnVal;
-	returnVal = 0;
+	try{
+		returnVal = 0;
+	}catch(utils::Error e){
+		cout<<"ATTENTION: ==================================="<<endl;
+		cout<<"\tAn Error has occured!"<<endl;
+		cout<<"\tPlease contect a Technical Support"<<endl;
+		cout<<"\tand provide them the following information"<<endl;
+		cout<<"\t\tError description: "<<e.description<<endl;
+		cout<<"\t\tError position: "<<e.position<<endl;
+		returnVal = 1;
+	}
 	return returnVal;
 }
