@@ -1,4 +1,4 @@
-FN=new
+FN=new2
 g++ $FN.cpp -o $FN.out
 chmod +x $FN.out
 ./$FN.out
