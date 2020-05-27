@@ -23,7 +23,6 @@
 #include <fstream>	//file io
 #include <string>	//using string
 #include <cctype>	//using tolower for charactor types
-#include <map>		//using dictionary(maps)
 
 using namespace std;
 
@@ -81,19 +80,19 @@ using namespace std;
 			quota = argQuota;
 		}
 	};
-	//bisnuess plans in a dict with speed as the key and Plan class as value
-	map<int,Plan> bisnuessPlans = {
-		{100,Plan(100,129,"Free for CikKoo Line","500Mb")},
-		{300,Plan(300,189,"Free","Unlimited")},
-		{500,Plan(500,259,"Free","Unlimited")}
-	};
-	//home plans in a dict with speed as the key and Plan class as value
-	map<int,Plan> homePlans = {
-		{30,Plan(30,89,"Free for CikKoo Line","200Mb")},
-		{100,Plan(100,119,"Free","Unlimited")},
-		{300,Plan(300,179,"Free","Unlimited")}
-	};
+	//bisnuess plans in a array
+	Plan bisnuessPlans[3] = {
+		Plan(100,129,"Free for CikKoo Line","500Mb"),
+		Plan(300,189,"Free","Unlimited"),
+		Plan(500,259,"Free","Unlimited")
+	}
 
+	//home plans in a array
+	Plan homePlans[3] = {
+		Plan(30,89,"Free for CikKoo Line","200Mb"),
+		Plan(100,119,"Free","Unlimited"),
+		Plan(300,179,"Free","Unlimited")
+	}
 
 //Intercace, Functions that user will use directly (suppose in Interface.cpp)
 	namespace Interface {
@@ -111,9 +110,8 @@ using namespace std;
 		//Get User Input for Plan Type, Return 'H' for home, 'B' for bisnuess
 		char getPlanType(){
 			logToFile("Begain: Interface::getPlanType()",'S');
-			char returnVal;
+			char returnVal,filtred;
 			string raw;
-			char filtred;
 			while(true){
 				cout<<"Are you applying for Home(H) or Bisnuess(B)?"<<endl;
 				cout<<"Please type H or B following with [enter]. (Case sensitive):";
@@ -130,33 +128,31 @@ using namespace std;
 		}
 		//Get user input for Plan Speed, Return the Plan Speed as Integer
 		int getPlanSpeed(char planType){
-			// logToFile("Begain: Interface::getPlanSpeed()",'S');
-			// char returnVal;
-			// string raw;
-			// char filtred;
-			// map<int,Plan> plans;
-			// switch(planType){
-			// 	case 'H': plans = homePlans; break;
-			// 	case 'B': plans = bisnuessPlans; break;
-			// 	default: Error err(1,"getPlanSpeed","PlanType not H nor B")
-			// }
-
-			// while(true){
-			// 	cout<<"(instruction at planspeed)"<<endl;
-			// 	for (int i;i<3;i++){
-
-			// 	}
-			// 	cout<<"(H/B)";
-			// 	cin>>raw; filtred = raw[0]; //Get the first charactor
-			// 	if(filtred == 'H'|filtred == 'B') {
-			// 		returnVal = filtred;
-			// 		break;
-			// 	}
-			// 	cout<<"(invalid option)"<<endl;
-			// 	logToFile("Invalid option has been inputted, re-executing.",'W');
-			// }
-			// logToFile("End: Interface::getPlanSpeed()",'S');
-			// return returnVal;
+			logToFile("Begain: Interface::getPlanSpeed()",'S');
+			char returnVal,filtred;
+			string raw;
+			Plan plans[3];
+			switch(planType){
+				case 'H': plans = homePlans; break;
+				case 'B': plans = bisnuessPlans; break;
+				default: Error err(1,"getPlanSpeed","PlanType not H nor B")
+			}
+			while(true){
+				cout<<"(instruction at planspeed)"<<endl;
+				for (int i;i<3;i++){
+					cout<<plans[i].speed<<endl;
+				}
+				cout<<"(1/2/3)";
+				cin>>raw; filtred = raw[0]; //Get the first charactor
+				if(filtred == 'H'|filtred == 'B') {
+					returnVal = filtred;
+					break;
+				}
+				cout<<"(invalid option)"<<endl;
+				logToFile("Invalid option has been inputted, re-executing.",'W');
+			}
+			logToFile("End: Interface::getPlanSpeed()",'S');
+			return returnVal;
 		}
 	}
 
