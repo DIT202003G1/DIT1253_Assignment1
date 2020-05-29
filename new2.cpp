@@ -7,8 +7,9 @@
 	Assignment Group: Group ?
 	Group Members:
 	 - Zhao Xuanao (20023404)
-	 - Hee Kar Yan ()
-	 - Maisaa Ahmed ()
+	 - Hee Kar Yan (20021994)
+	 - Poo Yong Liang (20034864)
+	 - Maisaa Ahmed Abdelrahman Ahmed (20028999)
 	
 	Begain Date: (WED) 13 MAY 2020
 	
