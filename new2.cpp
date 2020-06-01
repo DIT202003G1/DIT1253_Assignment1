@@ -20,56 +20,61 @@
 */
 
 #include <iostream>
-#include <sstream>
 #include <string>
-#include <fstream>
 
 using namespace std;
 
-//SOFTWARE INFORMATION
-namespace info{
-	int version = 3;
-	string copyright = "(c) 2020 CikKoo Comm Ltd, All rights reserved.";
+//Global variables
+char typeOptions; //TypeOptions Values: H for Home, B for Bisnuess
+int speedOptions; //Option 1, 2, or 3.
+string name,email,icNum;
+
+//some sofrware information or other constant values
+namespace constant{
+	int VERSION = 3;
+	string COPYRIGHT = "(c) 2020 CikKoo Comm Ltd, All rights reserved.";
 }
 
-//UTILS FUNCTIONS
-namespace utils{
-	//Error Class
-	class Error{
-	public:
-		string description, position;
-		Error(string argDescription, string argPosition)
-	};
-}
-
-//PREDEFINES
-namespace predefined{
-	
-}
-
-//PREDEFINED PLANS
-namespace plans{
-	
-}
-
-//IO INTERFACE
+//What the user will be seeing on screen!
 namespace interface{
+	string table = "Plan type\t\tSpeed\t\tPrice(including 6\% SST)\t\tDomestic Voice Call\t\t\tQuota\n";
+	string bisnuessPlans[3] = {
+		"",
+		"",
+		""
+	};
+	string homePlans[3] = {
+		"",
+		"",
+		""
+	};
+	string logo = "   _____ _ _    _  __              _____                          \n  / ____(_) |  | |/ /             / ____|                         \n | |     _| | _| ' / ___   ___   | |     ___  _ __ ___  _ __ ___  \n | |    | | |/ /  < / _ \\ / _ \\  | |    / _ \\| '_ ` _ \\| '_ ` _ \\ \n | |____| |   <| . \\ (_) | (_) | | |___| (_) | | | | | | | | | | |\n  \\_____|_|_|\\_\\_|\\_\\___/ \\___/   \\_____\\___/|_| |_| |_|_| |_| |_|\n";
+	string greetings = "Welcome to CikKoo Comm Ltd. Our ultimate goal is to provide excellent service to customers with affordable price. Please follow the guide step by step so that we can suggest you with the best plan\n\n";
+	char getPlanType(){
+		char planTypeEntered;
+		do{
+			cout<<"Enter \'H\' for home plan or \'B\' for business plan: ";
+			cin>>planTypeEntered;
+			if (planTypeEntered=='H' || planTypeEntered=='h' || planTypeEntered=='B' || planTypeEntered=='b')
+			{
+				return planTypeEntered;
+			}
+			cout<<"Invalid plan type entered!\n\n";
+		}while (true);
+	}
+	int getSpeedOption(){
+		for(int i;i<3;i++){
 
+		}
+	}
 }
 
 //main
 int main(){
-	int returnVal;
-	try{
-		returnVal = 0;
-	}catch(utils::Error e){
-		cout<<"ATTENTION: ==================================="<<endl;
-		cout<<"\tAn Error has occured!"<<endl;
-		cout<<"\tPlease contect a Technical Support"<<endl;
-		cout<<"\tand provide them the following information"<<endl;
-		cout<<"\t\tError description: "<<e.description<<endl;
-		cout<<"\t\tError position: "<<e.position<<endl;
-		returnVal = 1;
-	}
-	return returnVal;
+	cout<<interface::logo << endl;
+	cout<<constant::COPYRIGHT << ", You are using version " << constant::VERSION << endl;
+	cout << endl << interface::greetings;
+	typeOptions = interface::getPlanType();
+	speedOptions = interface::getSpeedOption();
+	return 0;
 }
