@@ -35,18 +35,18 @@ namespace constant{
 	string COPYRIGHT = "(c) 2020 CikKoo Comm Ltd, All rights reserved.";
 }
 
-//What the user will be seeing on screen!
+//What the user will be seeing on screen! (if possible i wish this is in json)
 namespace interface{
-	string table = "Plan type\t\tSpeed\t\tPrice(including 6\% SST)\t\tDomestic Voice Call\t\t\tQuota\n";
-	string bisnuessPlans[3] = {
-		"",
-		"",
-		""
-	};
+	string tableHeader = "Plan type    Speed     Price(including 6\% SST)    Domestic Voice Call    Quota\n--------------------------------------------------------------------------------";
 	string homePlans[3] = {
-		"",
-		"",
-		""
+		"Home         30Mbps    RM94.34                     Free for Cikkoo Line   200Mb",
+		"Home         100Mbps   RM126.14                    Free                   Unlimited",
+		"Home         300Mbps   RM189.74                    Free                   Unlimited"
+	};
+	string bisnuessPlans[3] = {
+		"Business     100Mbps   RM136.74                    Free for Cikkoo Line   500Mb",
+		"Business     300Mbps   RM200.34                    Free                   Unlimited",
+		"Business     500Mbps   RM274.54                    Free                   Unlimited"
 	};
 	string logo = "   _____ _ _    _  __              _____                          \n  / ____(_) |  | |/ /             / ____|                         \n | |     _| | _| ' / ___   ___   | |     ___  _ __ ___  _ __ ___  \n | |    | | |/ /  < / _ \\ / _ \\  | |    / _ \\| '_ ` _ \\| '_ ` _ \\ \n | |____| |   <| . \\ (_) | (_) | | |___| (_) | | | | | | | | | | |\n  \\_____|_|_|\\_\\_|\\_\\___/ \\___/   \\_____\\___/|_| |_| |_|_| |_| |_|\n";
 	string greetings = "Welcome to CikKoo Comm Ltd. Our ultimate goal is to provide excellent service to customers with affordable price. Please follow the guide step by step so that we can suggest you with the best plan\n\n";
@@ -62,19 +62,23 @@ namespace interface{
 			cout<<"Invalid plan type entered!\n\n";
 		}while (true);
 	}
-	int getSpeedOption(){
-		for(int i;i<3;i++){
+	int getSpeedOption(char type){
+/*		switch(type){
 
 		}
+		for(int i;i<3;i++){
+
+		}*/
+		return 1;
 	}
 }
 
 //main
 int main(){
-	cout<<interface::logo << endl;
-	cout<<constant::COPYRIGHT << ", You are using version " << constant::VERSION << endl;
+	cout << interface::logo << endl;
+	cout << constant::COPYRIGHT << ", You are using version " << constant::VERSION << endl;
 	cout << endl << interface::greetings;
-	typeOptions = interface::getPlanType();
-	speedOptions = interface::getSpeedOption();
+	// typeOptions = interface::getPlanType();
+	// speedOptions = interface::getSpeedOption('w');
 	return 0;
 }
