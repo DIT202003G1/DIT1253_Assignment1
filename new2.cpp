@@ -14,9 +14,11 @@
 	Begain Date: (WED) 13 MAY 2020
 	
 	Lecturer:
-	Ms. Kumatha
-	kumatham@sunway.edu.my
-	016-5636585
+		Ms. Kumatha
+		kumatham@sunway.edu.my
+		016-5636585
+
+	This Project is available at https://github.com/DIT202003G1/DIT1253_Assignment1
 */
 
 #include <iostream>
