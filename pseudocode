@@ -15,4 +15,92 @@ COMMENT
 		016-5636585
 	Project Repo:
 		https://github.com/DIT202003G1/DIT1253_Assignment1
+		Syntax of this Comment: https://github.com/DIT202003G1/DIT1253_Assignment1/pseudocode.md
 END COMMENT
+BEGAIN PROGRAM
+	DEFINE typeOptions AS charactor
+	DEFINE speedOptions AS integer
+	DEFINE name AS string
+	DEFINE icNum AS string
+	DEFINE email AS string
+	 
+	DEFINE constant::VERSION AS integer = 3
+	DEFINE constant::COPYRIGHT AS string = "(c) 2020 CikKoo Comm Ltd, All rights reserved."
+
+	DEFINE interface::tableHeader AS string = "  Plan type    Speed     Price(including 6\% SST)    Domestic Voice Call    Quota\n----------------------------------------------------------------------------------"
+	DEFINE interface::homePlans AS string(array of 3)
+	DEFINE interface::bisnuessPlans AS string(array of 3)
+	DEFINE interface::bisnuessPlans[0] AS string = "1 Home         30Mbps    RM94.34                    Free for Cikkoo Line   200Mb"
+	DEFINE interface::bisnuessPlans[1] AS string = "2 Home         100Mbps   RM126.14                   Free                   Unlimited"
+	DEFINE interface::bisnuessPlans[2] AS string = "3 Home         300Mbps   RM189.74                   Free                   Unlimited"
+	DEFINE interface::homePlans AS string(array of 3)
+	DEFINE interface::homePlans[0] AS string = "1 Business     100Mbps   RM136.74                   Free for Cikkoo Line   500Mb"
+	DEFINE interface::homePlans[1] AS string = "2 Business     300Mbps   RM200.34                   Free                   Unlimited"
+	DEFINE interface::homePlans[2] AS string = "3 Business     500Mbps   RM274.54                   Free                   Unlimited"
+	DEFINE interface::logo AS string = "   _____ _ _    _  __              _____                          \n  / ____(_) |  | |/ /             / ____|                         \n | |     _| | _| ' / ___   ___   | |     ___  _ __ ___  _ __ ___  \n | |    | | |/ /  < / _ \\ / _ \\  | |    / _ \\| '_ ` _ \\| '_ ` _ \\ \n | |____| |   <| . \\ (_) | (_) | | |___| (_) | | | | | | | | | | |\n  \\_____|_|_|\\_\\_|\\_\\___/ \\___/   \\_____\\___/|_| |_| |_|_| |_| |_|\n"
+	DEFINE interface::greetings AS string = "Welcome to CikKoo Comm Ltd. Our ultimate goal is to provide excellent service to customers with affordable price. Please follow the guide step by step so that we can suggest you with the best plan\n\n" 
+
+	DEFINE interface::getPlanType() AS function RETURNS charactor
+		DEFINE planTypeEntered AS charactor
+		WHILE TRUE THEN
+			OUTPUT "Enter \'H\' for home plan or \'B\' for business plan (case sensitive!): "
+			INPUT planTypeEntered
+			IF planTypeEntered == 'H' OR planTypeEntered == 'B' THEN
+				OUTPUT "Selected" + planTypeEntered + "\n\n"
+				RETURN planTypeEntered
+			END IF
+			OUTPUT "Invalid plan type entered!\n\n"
+		END WHILE
+	END FUNCTION
+
+	DEFINE interface::getSpeedOption(type AS charactor) AS function RETURNS integer
+		DEFINE speedOptionEntered AS Integer
+		DEFINE orderConfirm AS charactor
+		WHILE TRUE DO
+			OUTPUT interface::tableHeader + "\n"
+			IF type == 'B' THEN
+				FOREACH (i AS string) IN (interface::bisnuessPlans)
+					OUTPUT i
+				NEXT
+			ELSE IF type == 'H' THEN
+				FOREACH (i AS string) IN (interface::homePlans)
+					OUTPUT i
+				NEXT
+			END IF
+			OUTPUT "\nEnter a number (1~3) to select a plan: "
+			INPUT speedOptionEntered
+			IF speedOptionEntered >= 1 AND speedOptionEntered <= 3 THEN
+				WHILE TRUE DO
+					OUTPUT "You have selected option " + speedOptionEntered + ", do you confirm the order?(Y/N)"
+					INPUT orderConfirm
+					IF orderConfirm == 'Y' THEN
+						RETURN speedOptionEntered
+					ELSE
+						COUT "order canceled"
+						RETURN 0
+					END IF
+				END WHILE
+			ELSE
+				OUTPUT "\nInvalid option number typed!\n\n"
+			END IF
+		END WHILE
+	END FUNCTION
+
+	OUTPUT interface::logo + "\n"
+	OUTPUT constant::COPYRIGHT + ", You are using version " + constant::VERSION + "\n"
+	OUTPUT "\n" + interface::greetings
+	typeOptions = interface::getPlanType()
+	speedOptions = interface::getSpeedOption(typeOptions)
+	IF speedOptions == 0 THEN
+		OUTPUT "\n\nWe are very sorry for the inconvenience. We will continue improving our plans to suit your needs.\n"
+		OUTPUT "Thank-you for using this system! see you next time"
+	ELSE
+		OUTPUT "Please enter your full name: "
+		INPUT name
+		OUTPUT "Please enter your identification number: "
+		INPUT icNum
+		OUTPUT "Please enter your email address: "
+		INPUT email
+		OUTPUT "\n\nThank you for choosing CikKoo Comm Ltd! Your subscription is in process.\n"
+	END IF
+END PROGRAM
